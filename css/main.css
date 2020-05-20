@@ -1,0 +1,26 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    color:white;
+}
+
+tbody a {
+    color:white;
+    margin-top: 10px !important;
+    text-decoration: none;
+}
+
+tbody a:hover {
+    color:rgb(194, 86, 86);
+    text-decoration: none;
+}
+
+tbody i {
+cursor:pointer;
+
+}
