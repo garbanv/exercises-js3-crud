@@ -1,11 +1,17 @@
 function getData(){
     
     const tbody = document.querySelector('#tbody');
-    fetch('../json/list.json')
+    const URL = "https://api.typeform.com/forms";
+    const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+    fetch(URL,{
+      headers:{
+        Authorization:"Bearer HtSpHjJLuZKjsNZfLepSycKYNh4Xer32rwQgc6TFP8xn",
+      }
+    })
     .then(res => res.json())
     .then(data => {
-        // console.log(data)
-      return  data.map(function(type){
+        console.log(data)
+      return  data.items.map(function(type){
              const tdTitle = document.createElement("td");
              const tdHref = document.createElement("td");
              const tdDelete = document.createElement("td");
@@ -22,16 +28,17 @@ function getData(){
 
             trashIcon.className ="far fa-trash-alt";
             editIcon.className ="far fa-edit";
+            editIcon.innerHTML="x";
 
             tdTitle.innerText=type.title;
             tdDelete.appendChild(trashIcon)
             tdHref.appendChild(hrefLink);
-            hrefLink.setAttribute('href', `${type.href}`)
+            hrefLink.setAttribute('href', `${type.self.href}`)
             editLink.setAttribute('href',`http://127.0.0.1:5500/pages/edit.html?id=${type.id}`)
             tdEdit.appendChild(editLink)
             tdEdit.className = "text-center"
             tdDelete.className = "text-center"    
-            hrefLink.innerText=type.href;
+            hrefLink.innerText=type.self.href;
 
             editLink.appendChild(editIcon);
             
